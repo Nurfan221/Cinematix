@@ -42,3 +42,47 @@
 </body>
 
 </html>
+
+
+
+
+<div class="box2">
+    <h2><?php echo $data['judul']; ?></h2>
+    <p>genre genre genre</p>
+</div>
+<div class="box3">
+    <div class="produk2 ">
+        <img src="<?php echo $data['poster']; ?>" alt=""></img>
+    </div>
+    <div class="desk">
+        <div class="deskkiri">
+            <div class="deskkiri1">
+                <p>Produce </p>
+            </div>
+            <div class="deskkiri1">
+                <p>Deskripsi </p>
+            </div>
+        </div>
+
+        <div class="deskkanan">
+            <div class="deskkanan1">
+                <p> : <?php echo $data['produce'] ?></p>
+            </div>
+            <div class="deskkanan1">
+                <p style="text-align: justify;"> : <?php echo $data['deskripsi'] ?></p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="box4">
+    <div class="jadwal1">
+        <p>Jadwal</p>
+    </div>
+
+    <div class="jadwal2">
+        <p>18 April</p>
+        <h1>SEL</h1>
+    </div>
+</div>

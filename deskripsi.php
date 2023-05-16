@@ -1,7 +1,7 @@
 <?php
 $curl = curl_init();
 $code = $_GET['id'];
-curl_setopt($curl, CURLOPT_URL, 'https://carifilm.000webhostapp.com/public/api/get-film/' . $code);
+curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/index.php?id=' . $code);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($curl);
@@ -10,7 +10,17 @@ $data = json_decode($response, true);
 $data = $data['data'];
 curl_close($curl);
 
-
+foreach ($data as $item) {
+    $judul = $item['judul'];
+    $producer = $item['producer'];
+    $poster = $item['poster'];
+    $id_film = $item['id_film'];
+    $thumbnail = $item['thumbnail'];
+    $sinopsis = $item['sinopsis'];
+    $genre = $item['genre'];
+    $time = $item['time'];
+    $usia = $item['usia'];
+}
 
 
 
@@ -21,11 +31,13 @@ curl_close($curl);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deskripsi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <title>Deskripsi</title>
 
 </head>
 
@@ -34,7 +46,7 @@ curl_close($curl);
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid" style="background-color: #1F3747; height: 50px">
-            <a class="navbar-brand" href="#" style="color:aliceblue;">SINEMA TIX</a>
+            <a class="navbar-brand" href="dasboard.php" style="color:aliceblue;">SINEMA TIX</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -73,62 +85,114 @@ curl_close($curl);
 
 
     </div>
-    <div class="section">
-        <div class="container">
-            <h3>Detail Produk</h3>
-            <div class="box">
 
-                <div class="box2">
-                    <h2><?php echo $data['judul']; ?></h2>
-                    <p>genre genre genre</p>
+
+
+    <div class="deskripsi3">
+        <div class="gambardesk">
+            <img src="gambar/deskripsi1.png" alt=""></img>
+        </div>
+
+        <div class="diskripsifilm ">
+            <div class="deskripsifilm1">
+                <img class="gambarfilm" src="<?php echo $poster ?>" alt=""></img>
+
+            </div>
+
+            <div class="deskripsifilm2">
+                <h1><?php echo $judul ?></h1>
+                <table>
+                    <th>
+                        <tr>
+                            <th>Genre</th>
+
+                            <td>Mark</td>
+                        </tr>
+                    </th>
+                    <th>
+                        <tr>
+                            <th>Durasi</th>
+
+                            <td>Jacob</td>
+                        <tr>
+                    </th>
+                    <th>Sutradara</th>
+
+                    <td>Larry</td>
+                    </tr>
+                    <tr>
+                        <th>Rating Usia</th>
+
+                        <td>Larry</td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <!-- <dev class="pilihanfilm">
+            1
+        </dev> -->
+        <div class="deskripsifilm3">
+            <div class="pilihandesk1">
+                <div class="menu">
+                    <ul>
+                        <li><a class="klik_menu" id="sinopsis">Sinopsis</a></li>
+                    </ul>
                 </div>
-                <div class="box3">
-                    <div class="produk2 ">
-                        <img src="<?php echo $data['poster']; ?>" alt=""></img>
-                    </div>
-                    <div class="desk">
-                        <div class="deskkiri">
-                            <div class="deskkiri1">
-                                <p>Produce </p>
-                            </div>
-                            <div class="deskkiri1">
-                                <p>Deskripsi </p>
-                            </div>
-                        </div>
-
-                        <div class="deskkanan">
-                            <div class="deskkanan1">
-                                <p> : <?php echo $data['produce'] ?></p>
-                            </div>
-                            <div class="deskkanan1">
-                                <p style="text-align: justify;"> : <?php echo $data['deskripsi'] ?></p>
-                            </div>
-
-                        </div>
-                    </div>
+            </div>
+            <div class="pilihandesk2">
+                <div class="menu">
+                    <ul>
+                        <li><a class="klik_menu" id="jadwal">Jadwal</a></li>
+                    </ul>
                 </div>
-
-                <div class="box4">
-                    <div class="jadwal1">
-                        <p>Jadwal</p>
-                    </div>
-
-                    <div class="jadwal2">
-                        <p>18 April</p>
-                        <h1>SEL</h1>
-                    </div>
-                </div>
-
             </div>
         </div>
 
-        <div>
-            <footer>
-                <div class="container">
-                    <small>Copyright &copy; 2023 - PRODUNCH </small>
-                </div>
-            </footer>
-        </div>
+    </div>
+
+    <!-- jadwal -->
+
+    <!-- ajax -->
+    <div class="badan">
+    </div>
+
+    <div>
+        <footer>
+            <div class="container">
+                <small>Copyright &copy; 2023 - PRODUNCH </small>
+            </div>
+        </footer>
+
+
+    </div>
+
+
 </body>
+
+<!-- ajax -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.klik_menu').click(function() {
+            var menu = $(this).attr('id');
+            if (menu == "sinopsis") {
+                $('.badan').load('sinopsis.php');
+                document.getElementById("jadwal").style = "border:none;";
+                document.getElementById("sinopsis").style = "border-bottom:2px solid; color: black;";
+            } else if (menu == "jadwal") {
+                $('.badan').load('jadwal.php');
+                document.getElementById("sinopsis").style = "border:none;";
+                document.getElementById("jadwal").style = "border-bottom:2px solid; color: black;";
+            }
+        });
+
+
+        // halaman yang di load default pertama kali
+        $('.badan').load('home.php');
+
+    });
+</script>
 
 </html>

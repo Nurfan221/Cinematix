@@ -10,7 +10,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Dasboard</title>
 </head>
 
 <body>
@@ -100,7 +100,7 @@
                     <?php
                     $curl = curl_init();
 
-                    curl_setopt($curl, CURLOPT_URL, 'https://carifilm.000webhostapp.com/public/api/get-film');
+                    curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/index.php');
                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
                     $response = curl_exec($curl);
@@ -114,7 +114,7 @@
 
                     ?>
 
-                        <a href="deskripsi.php?id=<?php echo $item['id'] ?>">
+                        <a href="deskripsi.php?id=<?php echo $item['id_film'] ?>">
                             <div class="produk">
                                 <div class="gmbrprdk" style=" height:200px">
                                     <img src="<?php echo $item['poster']; ?>">
@@ -128,7 +128,7 @@
 
                                     <div class="deskripsi2" style=" height:50px">
                                         <!-- Button trigger modal -->
-                                        <form action="deskripsi.php?id=<?php echo $item['id'] ?>" method="POST">
+                                        <form action="deskripsi.php?id=<?php echo $item['id_film'] ?>" method="POST">
                                             <button class="button-24" name="deskripsi" value="Cari-Produk" id="btnlogin" role="button" style="  margin-left: 60px; padding-top:5px;">Deskripsi</button>
                                         </form>
 
@@ -144,6 +144,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 
 
