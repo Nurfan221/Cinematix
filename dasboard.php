@@ -14,50 +14,53 @@
 </head>
 
 <body>
+    <nav>
+        <div class="navbar">
+            <div class="logoutama">
+                <img src="gambar/sinematix.png" alt="">
+            </div>
+
+            <div class="menupilihan">
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/play1.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Now Playing</h1>
+                    </div>
+                </div>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/movie.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Theater</h1>
+                    </div>
+                </div>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/megaphone.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Up Coming</h1>
+                    </div>
+                </div>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/lokasi.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Location</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
     <!-- bg -->
     <div class="contaianer ">
 
-        <!-- navbar -->
 
-        <!-- navbar -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid" style="background-color: #1F3747; height: 50px">
-                <a class="navbar-brand" href="#" style="color:aliceblue;">SINEMA TIX</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="judul">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <div class="icon"><img src="gambar/play1.png" alt="">
-                                    <p style="color:aliceblue;  text-align: center;     margin: 0 auto; ">Now Playing</p>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="icon"><img src="gambar/movie.png" alt="">
-                                    <p style="color:aliceblue; text-align: center;    margin: 0 auto;">Theater</p>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <div class="icon"><img src="gambar/megaphone.png" alt="">
-                                    <p style="color:aliceblue; text-align: center;     margin: 0 auto;">UP Coming</p>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <div class="icon"><img src="gambar/lokasi.png" alt="">
-                                    <p style="color:aliceblue;     margin: 0 auto; text-align: center;">Location</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
 
 
         <!-- Banner -->
@@ -69,7 +72,7 @@
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div class="carousel-inner" style="max-height: 500px;">
+                    <div class="carousel-inner" style="height: 60%;">
                         <div class="carousel-item active">
                             <img src="gambar/frame1.png" class="d-block w-100" style="max-height: 400px;" alt="...">
                         </div>
@@ -116,12 +119,12 @@
 
                         <a href="deskripsi.php?id=<?php echo $item['id_film'] ?>">
                             <div class="produk">
-                                <div class="gmbrprdk" style=" height:200px">
+                                <div class="gmbrprdk">
                                     <img src="<?php echo $item['poster']; ?>">
                                 </div>
-                                <div class="deskripsi" style=" height:170px;">
+                                <div class="deskripsi">
 
-                                    <div class="deskripsi1" style=" height:100px;  margin-top: 20px;">
+                                    <div class="deskripsi1">
                                         <p class="nama"><?php echo $item['judul']; ?></p>
 
                                     </div>
@@ -129,13 +132,10 @@
                                     <div class="deskripsi2" style=" height:50px">
                                         <!-- Button trigger modal -->
                                         <form action="deskripsi.php?id=<?php echo $item['id_film'] ?>" method="POST">
-                                            <button class="button-24" name="deskripsi" value="Cari-Produk" id="btnlogin" role="button" style="  margin-left: 60px; padding-top:5px;">Deskripsi</button>
+
+                                            <button class="button-86" role="button">Deskripsi</button>
+
                                         </form>
-
-
-
-
-
                                     </div>
                                 </div>
                             </div>

@@ -10,6 +10,7 @@ $data = json_decode($response, true);
 $data = $data['data'];
 curl_close($curl);
 
+
 foreach ($data as $item) {
     $judul = $item['judul'];
     $producer = $item['producer'];
@@ -20,11 +21,42 @@ foreach ($data as $item) {
     $genre = $item['genre'];
     $time = $item['time'];
     $usia = $item['usia'];
+
+    $time = $time * 60;
 }
 
 
 
 ?>
+
+<?php
+//--------------------------konversi waktu----------------------------
+function waktu($time)
+{
+
+    if (($time > 0) and ($time < 60)) {
+        $lama = number_format($time) . " detik";
+        return $lama;
+    }
+    if (($time > 60) and ($time < 3600)) {
+        $detik = fmod($time, 60);
+        $menit = $time - $detik;
+        $menit = $menit / 60;
+        $lama = $menit . " Menit " . number_format($detik) . " detik";
+        return $lama;
+    }
+    if ($time >= 3600) {
+        $detik = fmod($time, 60);
+        $tempmenit = ($time - $detik) / 60;
+        $menit = fmod($tempmenit, 60);
+        $jam = ($tempmenit - $menit) / 60;
+        $lama = $jam . " Jam " . $menit . " Menit " . number_format($detik) . " detik";
+        return $lama;
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,129 +76,138 @@ foreach ($data as $item) {
 <body>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid" style="background-color: #1F3747; height: 50px">
-            <a class="navbar-brand" href="dasboard.php" style="color:aliceblue;">SINEMA TIX</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="judul">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <div class="icon"><img src="gambar/play1.png" alt="">
-                                <p style="color:aliceblue;  text-align: center;     margin: 0 auto; ">Now Playing</p>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <div class="icon"><img src="gambar/movie.png" alt="">
-                                <p style="color:aliceblue; text-align: center;    margin: 0 auto;">Theater</p>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <div class="icon"><img src="gambar/megaphone.png" alt="">
-                                <p style="color:aliceblue; text-align: center;     margin: 0 auto;">UP Coming</p>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <div class="icon"><img src="gambar/lokasi.png" alt="">
-                                <p style="color:aliceblue;     margin: 0 auto; text-align: center;">Location</p>
-                            </div>
-                        </li>
-                    </ul>
+    <nav>
+        <div class="navbar">
+            <div class="logoutama">
+                <img src="gambar/sinematix.png" alt="">
+            </div>
+
+            <div class="menupilihan">
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/play1.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Now Playing</h1>
+                    </div>
                 </div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/movie.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Theater</h1>
+                    </div>
+                </div>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/megaphone.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Up Coming</h1>
+                    </div>
+                </div>
+                <div class="logomenu">
+                    <div class="logomenu1">
+                        <img src="gambar/lokasi.png" alt="">
+                    </div>
+                    <div class="logomenu2">
+                        <h1>Location</h1>
+                    </div>
+                </div>
+
             </div>
         </div>
     </nav>
 
-
-    </div>
-
+    <div class="contaianer">
 
 
-    <div class="deskripsi3">
-        <div class="gambardesk">
-            <img src="gambar/deskripsi1.png" alt=""></img>
-        </div>
 
-        <div class="diskripsifilm ">
-            <div class="deskripsifilm1">
-                <img class="gambarfilm" src="<?php echo $poster ?>" alt=""></img>
 
+
+        <div class="deskripsi3">
+            <div class="gambardesk">
+                <img src="gambar/deskripsi1.png" alt=""></img>
             </div>
 
-            <div class="deskripsifilm2">
-                <h1><?php echo $judul ?></h1>
-                <table>
-                    <th>
-                        <tr>
-                            <th>Genre</th>
+            <div class="diskripsifilm ">
+                <div class="deskripsifilm1">
+                    <img class="gambarfilm" src="<?php echo $poster ?>" alt=""></img>
 
-                            <td>Mark</td>
+                </div>
+
+                <div class="deskripsifilm2">
+                    <h1><?php echo $judul ?></h1>
+                    <table>
+                        <th>
+                            <tr>
+                                <th>Genre</th>
+                                <td> : </td>
+                                <td><?php echo $genre    ?></td>
+                            </tr>
+                        </th>
+                        <th>
+                            <tr>
+                                <th>Durasi</th>
+                                <td> : </td>
+                                <td><?php $jam = waktu($time);
+                                    echo $jam  ?></td>
+                            <tr>
+                        </th>
+                        <th> Producer</th>
+                        <td> : </td>
+                        <td><?php echo $producer ?></td>
                         </tr>
-                    </th>
-                    <th>
                         <tr>
-                            <th>Durasi</th>
+                            <th>Usia</th>
+                            <td>: </td>
+                            <td><?php echo $usia ?></td>
+                        </tr>
 
-                            <td>Jacob</td>
-                        <tr>
-                    </th>
-                    <th>Sutradara</th>
+                    </table>
+                </div>
 
-                    <td>Larry</td>
-                    </tr>
-                    <tr>
-                        <th>Rating Usia</th>
 
-                        <td>Larry</td>
-                    </tr>
-
-                </table>
             </div>
-
-
-        </div>
-        <!-- <dev class="pilihanfilm">
+            <!-- <dev class="pilihanfilm">
             1
         </dev> -->
-        <div class="deskripsifilm3">
-            <div class="pilihandesk1">
-                <div class="menu">
-                    <ul>
-                        <li><a class="klik_menu" id="sinopsis">Sinopsis</a></li>
-                    </ul>
+            <div class="deskripsifilm3">
+                <div class="pilihandesk1">
+                    <div class="menu">
+                        <ul>
+                            <li><a class="klik_menu" id="sinopsis">Sinopsis</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pilihandesk2">
+                    <div class="menu">
+                        <ul>
+                            <li><a class="klik_menu" id="jadwal">Jadwal</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="pilihandesk2">
-                <div class="menu">
-                    <ul>
-                        <li><a class="klik_menu" id="jadwal">Jadwal</a></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
 
-    </div>
+        <!-- jadwal -->
 
-    <!-- jadwal -->
+        <!-- ajax -->
+        <div class="badan">
 
-    <!-- ajax -->
-    <div class="badan">
-    </div>
+        </div>
 
-    <div>
-        <footer>
-            <div class="container">
-                <small>Copyright &copy; 2023 - PRODUNCH </small>
-            </div>
-        </footer>
+        <div>
+            <footer>
+                <div class="container">
+                    <small>Copyright &copy; 2023 - PRODUNCH </small>
+                </div>
+            </footer>
 
 
+        </div>
     </div>
 
 
@@ -178,11 +219,14 @@ foreach ($data as $item) {
         $('.klik_menu').click(function() {
             var menu = $(this).attr('id');
             if (menu == "sinopsis") {
-                $('.badan').load('sinopsis.php');
+
+                $('.badan').load('sinopsis.php?id=<?php echo $item['id_film'] ?>');
                 document.getElementById("jadwal").style = "border:none;";
                 document.getElementById("sinopsis").style = "border-bottom:2px solid; color: black;";
+
+
             } else if (menu == "jadwal") {
-                $('.badan').load('jadwal.php');
+                $('.badan').load('jadwal.php?id=<?php echo $item['id_film'] ?>');
                 document.getElementById("sinopsis").style = "border:none;";
                 document.getElementById("jadwal").style = "border-bottom:2px solid; color: black;";
             }
