@@ -1,6 +1,40 @@
 <?php
 $id = $_GET['id'];
-echo $id;
+// Mendapatkan tanggal hari ini
+$tanggalHariIni = date('Y-m-d');
+
+// Membuat array untuk menyimpan tanggal-tanggal
+$tanggal30HariKedepan = [];
+
+// Mengulang sebanyak 30 hari
+for ($i = 0; $i < 10; $i++) {
+    // Menambahkan i hari ke tanggal hari ini
+    $tanggal = date('Y-m-d', strtotime("+$i days", strtotime($tanggalHariIni)));
+
+    // Menambahkan tanggal ke array
+    $tanggal10HariKedepan[] = $tanggal;
+}
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/bioskop.php');
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$bioskop = curl_exec($curl);
+$data_bioskop = json_decode($bioskop, true);
+
+$data_bioskop = $data_bioskop['data'];
+curl_close($curl);
+
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/studio.php');
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+$studio = curl_exec($curl);
+$data_studio = json_decode($studio, true);
+
+$data_studio = $data_studio['data'];
+curl_close($curl);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,71 +44,51 @@ echo $id;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style2.css">
+
+    <link rel="stylesheet" href="style/coba.scss">
+
 </head>
 
 <body>
-    <div class="container">
+
+    <form action="" method="POST" class="jadwal-form w-[94%] my-3 mx-auto">
+
         <div class="jadwal">
-            <?php
+            <section class="sec">
+                <?php
 
-            for ($i = 0; $i < 5; $i++) {
-                // blok kode yang akan diulang di sini!
+                foreach ($tanggal10HariKedepan as $tgl) {
+                    // Set lokalisasi ke bahasa Indonesia
+                    if ($tgl == date("Y-m-d")) {
+                        $hari = "Today";
+                    } else {
+                        $hari = strftime("%a", strtotime($tgl));
+                    }
+                    $tanggall = strftime("%d", strtotime($tgl));
+                    $bulan = strftime("%b", strtotime($tgl));
 
-            ?>
-                <div class="tgltayang">
-                    <h1>1 mei </h1>
-                    <h1>Hari ini</h1>
-                </div>
+                ?>
+                    <div class="cektod">
+                        <input class="inputtod" type="radio" id="<?= $tgl ?>" name="select" value="<?= $tgl ?>" checked>
+                        <label class="labeltod" for="<?= $tgl ?>">
+                            <span class="text-2xl font-bold"><?= $tanggall ?> <?= $bulan ?></span>
+                            <span class="text-2xl font-bold"><?= $hari ?></span>
+                        </label>
+                    </div>
 
-            <?php } ?>
+                <?php
+                }
+
+
+                ?>
+            </section>
         </div>
 
 
 
 
-        <div class="bioskop">
-            <div class="bioskop1">
-                <div class="alamatbioskop">
-                    <img src="gambar/bintang.png" alt="">
-                    <h1>JOGJA CITY XXI </h1>
-                    <p>Jl. Magelang No.6 No.18, Kutu Patran, Sinduadi, Kec. Mlati, Kabupaten Slem...</p>
-                </div>
-                <div class="jamtayang">
-                    <h1>2D</h1>
-                    <?php
+    </form>
 
-                    for ($i = 0; $i < 4; $i++) {
-                        // blok kode yang akan diulang di sini!
-
-                    ?>
-                        <div class="jamtayang2">
-                            <h1>13.00</h1>
-                        </div>
-
-                    <?php } ?>
-                </div>
-
-            </div>
-            <div class="bioskop2">
-                <div class="xxi">
-                    <img src="gambar/XXI.png" alt="">
-                </div>
-                <div class="harga">
-                    <h1>Rp.45.000.00-</h1>
-                </div>
-            </div>
-        </div>
-        <div class="tombolbeli">
-            <div class="tiket">
-                <img src="gambar/tiket.png" alt="">
-            </div>
-            <div class="tiket2">
-                <h1>BELI TIKET</h1>
-            </div>
-
-        </div>
-    </div>
 
 
 </body>

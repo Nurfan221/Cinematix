@@ -927,3 +927,79 @@ background-color: #D9D9D9;
       float: left;
       padding-top: 10px;
     }
+
+
+    
+
+
+.jadwal {
+  width: 80%;
+  height: 20vh;
+  box-shadow: 2px 2px 2px 2px rgb(109, 107, 107); 
+  margin: 40px auto;
+padding: 10px;
+border: 1px solid #8A8A8A;
+  border-radius: 13px;
+  overflow: hidden;
+  display: flex;
+  background-color: white;
+
+
+}
+.radio-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-container {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 50%;
+}
+
+.radio-container:hover input ~ .checkmark {
+  background-color: #f1f1f1;
+}
+
+.radio-container input:checked ~ .checkmark {
+  background-color: #333;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio-container .checkmark:after {
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.radio-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}

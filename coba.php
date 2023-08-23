@@ -1,3 +1,21 @@
+<?php
+
+// Mendapatkan tanggal hari ini
+$tanggalHariIni = date('Y-m-d');
+
+// Membuat array untuk menyimpan tanggal-tanggal
+$tanggal30HariKedepan = [];
+
+// Mengulang sebanyak 30 hari
+for ($i = 0; $i < 10; $i++) {
+    // Menambahkan i hari ke tanggal hari ini
+    $tanggal = date('Y-m-d', strtotime("+$i days", strtotime($tanggalHariIni)));
+
+    // Menambahkan tanggal ke array
+    $tanggal10HariKedepan[] = $tanggal;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,32 +23,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style2.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/coba.scss">
 
     <title>Document</title>
 </head>
 
 <body>
-    <?php $id = $_POST['id'];
+    <div class="jadwal">
+        <section class="sec">
+            <?php
 
-    // Lakukan pemrosesan atau kueri database berdasarkan ID
-    // ...
+            foreach ($tanggal10HariKedepan as $tgl) {
+                // Set lokalisasi ke bahasa Indonesia
+                if ($tgl == date("Y-m-d")) {
+                    $hari = "Today";
+                } else {
+                    $hari = strftime("%a", strtotime($tgl));
+                }
+                $tanggall = strftime("%d", strtotime($tgl));
+                $bulan = strftime("%b", strtotime($tgl));
 
-    // Contoh respons dengan mengembalikan ID yang diterima
-    $response = array(
-        'status' => 'success',
-        'message' => 'ID yang diterima: ' . $id
-    );
+            ?>
+                <div class="cektod">
+                    <input class="inputtod" type="radio" id="<?= $tgl ?>" name="select" value="<?= $tgl ?>" checked>
+                    <label class="labeltod" for="<?= $tgl ?>">
+                        <span class="text-2xl font-bold"><?= $tanggall ?> <?= $bulan ?></span>
+                        <span class="text-2xl font-bold"><?= $hari ?></span>
+                    </label>
+                </div>
 
-    // Mengubah respons ke format JSON
-    $jsonResponse = json_encode($response);
+            <?php
+            }
 
-    // Mengirim respons kembali ke JavaScript
-    header('Content-Type: application/json');
-    echo $jsonResponse;
-    ?>
+
+            ?>
+        </section>
+    </div>
+
 </body>
 
 </html>

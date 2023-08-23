@@ -64,10 +64,7 @@ function waktu($time)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style2.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Deskripsi</title>
 
@@ -77,144 +74,279 @@ function waktu($time)
 
     <!-- navbar -->
     <nav>
-        <div class="navbar">
+        <div class="w-full flex space-x-6 px-5 bg-slate-800 h-20 items-center text-white">
             <div class="logoutama">
                 <img src="gambar/sinematix.png" alt="">
             </div>
 
-            <div class="menupilihan">
-                <div class="logomenu">
-                    <div class="logomenu1">
-                        <img src="gambar/play1.png" alt="">
-                    </div>
-                    <div class="logomenu2">
-                        <h1>Now Playing</h1>
-                    </div>
-                </div>
-                <div class="logomenu">
-                    <div class="logomenu1">
-                        <img src="gambar/movie.png" alt="">
-                    </div>
-                    <div class="logomenu2">
-                        <h1>Theater</h1>
-                    </div>
-                </div>
-                <div class="logomenu">
-                    <div class="logomenu1">
-                        <img src="gambar/megaphone.png" alt="">
-                    </div>
-                    <div class="logomenu2">
-                        <h1>Up Coming</h1>
-                    </div>
-                </div>
-                <div class="logomenu">
-                    <div class="logomenu1">
-                        <img src="gambar/lokasi.png" alt="">
-                    </div>
-                    <div class="logomenu2">
-                        <h1>Location</h1>
-                    </div>
-                </div>
-
-            </div>
+            <ul class="flex space-x-4">
+                <li>
+                    <a href="" class="flex space-x-1 items-center shadow-lg hover:bg-slate-900 rounded px-2 py-1">
+                        <img src="gambar/play1.png" class="w-8" alt="">
+                        <p>Sedang Tayang</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex space-x-1 items-center shadow-lg hover:bg-slate-900 rounded px-2 py-1">
+                        <img src="gambar/movie.png" class="w-8" alt="">
+                        <p>Bioskop</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex space-x-1 items-center shadow-lg hover:bg-slate-900 rounded px-2 py-1">
+                        <img src="gambar/megaphone.png" class="w-8" alt="">
+                        <p>Akan Datang</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="flex space-x-1 items-center shadow-lg hover:bg-slate-900 rounded px-2 py-1">
+                        <img src="gambar/lokasi.png" class="w-8" alt="">
+                        <p>Lokasi</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <div class="contaianer">
 
 
+    <div class=" mx-auto w-[90%] bg-gray-200 min-h-[100vh] border mt-3 ">
+        <div class="gambardesk mx-auto bg-black flex justify-center items-center w-[90%] mt-3">
+            <iframe width="560" height="315" src="<?= $thumbnail ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
 
+        <div class="w-[70%] mt-3 mx-auto  flex relative">
+            <div class="w-[30%] absolute -top-14 rounded shadow-md overflow-hidden ">
+                <img class="gambarfilm" src="<?php echo $poster ?>" alt=""></img>
 
-
-        <div class="deskripsi3">
-            <div class="gambardesk">
-                <img src="gambar/deskripsi1.png" alt=""></img>
             </div>
 
-            <div class="diskripsifilm ">
-                <div class="deskripsifilm1">
-                    <img class="gambarfilm" src="<?php echo $poster ?>" alt=""></img>
-
-                </div>
-
-                <div class="deskripsifilm2">
-                    <h1><?php echo $judul ?></h1>
-                    <table>
-                        <th>
-                            <tr>
-                                <th>Genre</th>
-                                <td> : </td>
-                                <td><?php echo $genre    ?></td>
-                            </tr>
-                        </th>
-                        <th>
-                            <tr>
-                                <th>Durasi</th>
-                                <td> : </td>
-                                <td><?php $jam = waktu($time);
-                                    echo $jam  ?></td>
-                            <tr>
-                        </th>
-                        <th> Producer</th>
-                        <td> : </td>
-                        <td><?php echo $producer ?></td>
+            <div class="ml-[40%] ">
+                <h1 class="text-2xl"><?php echo $judul ?></h1>
+                <table>
+                    <th>
+                        <tr class="text-left">
+                            <th>Genre</th>
+                            <td class="px-5">:</td>
+                            <td><?php echo $genre    ?></td>
                         </tr>
-                        <tr>
+                    </th>
+                    <th>
+                        <tr class="text-left">
+                            <th>Durasi</th>
+                            <td class="px-5">:</td>
+                            <td><?php $jam = waktu($time);
+                                echo $jam  ?></td>
+
+                        </tr>
+                        <tr class="text-left">
+                            <th> Producer</th>
+                            <td class="px-5">:</td>
+                            <td><?php echo $producer ?></td>
+                        </tr>
+                        <tr class="text-left">
                             <th>Usia</th>
-                            <td>: </td>
+                            <td class="px-5">:</td>
                             <td><?php echo $usia ?></td>
                         </tr>
 
-                    </table>
-                </div>
-
-
+                </table>
             </div>
-            <!-- <dev class="pilihanfilm">
-            1
-        </dev> -->
-            <div class="deskripsifilm3">
-                <div class="pilihandesk1">
-                    <div class="menu">
-                        <ul>
-                            <li><a class="klik_menu" id="sinopsis">Sinopsis</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pilihandesk2">
-                    <div class="menu">
-                        <ul>
-                            <li><a class="klik_menu" id="jadwal">Jadwal</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- jadwal -->
-
-        <!-- ajax -->
-        <div class="badan">
-
-        </div>
-
-        <div>
-            <footer>
-                <div class="container">
-                    <small>Copyright &copy; 2023 - PRODUNCH </small>
-                </div>
-            </footer>
 
 
         </div>
     </div>
 
+    <!-- jadwal -->
+
+
+
+
+
+    <?php
+    // Mendapatkan tanggal hari ini
+    $tanggalHariIni = date('Y-m-d');
+
+    // Membuat array untuk menyimpan tanggal-tanggal
+    $tanggal30HariKedepan = [];
+
+    // Mengulang sebanyak 30 hari
+    for ($i = 0; $i < 10; $i++) {
+        // Menambahkan i hari ke tanggal hari ini
+        $tanggal = date('Y-m-d', strtotime("+$i days", strtotime($tanggalHariIni)));
+
+        // Menambahkan tanggal ke array
+        $tanggal10HariKedepan[] = $tanggal;
+    }
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/bioskop.php');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $bioskop = curl_exec($curl);
+    $data_bioskop = json_decode($bioskop, true);
+
+    $data_bioskop = $data_bioskop['data'];
+    curl_close($curl);
+
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, 'http://localhost/in_cinema/studio.php');
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $studio = curl_exec($curl);
+    $data_studio = json_decode($studio, true);
+
+    $data_studio = $data_studio['data'];
+    curl_close($curl);
+
+    ?>
+
+    <div class="w-[90%] mx-auto">
+        <form action="seat.php" method="POST" class="jadwal-form w-[94%] my-3 mx-auto">
+
+            <input type="hidden" value="<?= $id_film ?> " name="id_film">
+
+            <ul class="flex overflow-x-auto space-x-2 mb-5">
+
+                <?php
+
+                foreach ($tanggal10HariKedepan as $tgl) {
+                    // Set lokalisasi ke bahasa Indonesia
+                    if ($tgl == date("Y-m-d")) {
+                        $hari = "Today";
+                    } else {
+                        $hari = strftime("%a", strtotime($tgl));
+                    }
+                    $tanggall = strftime("%d", strtotime($tgl));
+                    $bulan = strftime("%b", strtotime($tgl));
+
+                ?>
+
+                    <!-- <div class="cursor-pointer w-[250px] h-fit  radio-checked:text-white radio-checked:bg-slate-600 hover:shadow-mds">
+                        <input type="radio" required class="radio" name="tanggal" value="<?= $tgl ?>">
+                        <div class="flex flex-col border-2 text-slate-600 border-slate-600 items-center rounded-md w-[250px] py-1">
+                            <span class="text-2xl font-bold"><?= $tanggall ?> <?= $bulan ?></span>
+                            <span class="text-2xl font-bold"><?= $hari ?></span>
+                        </div>
+                    </div> -->
+
+                    <li>
+                        <input type="radio" id="<?= $tgl ?>" name="tgl" value="<?= $tgl ?>" class="hidden peer" required>
+                        <label for="<?= $tgl ?>" class="inline-flex items-center justify-between w-full p-5 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                            <div class="block">
+                                <div class="w-full text-lg font-semibold"><?= $tanggall ?> <?= $bulan ?></div>
+                                <div class="w-full"><?= $hari ?></div>
+                            </div>
+                        </label>
+                    </li>
+
+                <?php
+                }
+
+
+                ?>
+            </ul>
+
+            <div class="bg-white flex flex-col space-y-3 w-full rounded-none ">
+                <?php
+
+                foreach ($data_bioskop as $theater) {
+                ?>
+
+                    <div class="border-y-2 border-slate-300 bg-gray-100 py-2 px-5">
+                        `<div class="flex justify-between mb-3">
+                            <div class="flex">
+                                <button><img src="gambar/fav.png" alt="" class="w-8 h-8"></button>
+                                <p class="text-3xl font-bold text-slate-600"><?= $theater['nama'] ?></p>
+                            </div>
+                        </div>
+                        <a href="<?= $theater['maps'] ?>" class="text-gray-400 underline text-base"><?= $theater['lokasi'] ?></a>
+                        <?php
+
+                        foreach ($data_studio as $std) {
+                            if ($std['id_bioskop'] == $theater['id_bioskop']) {
+                                $format_angka = number_format($std['harga'], 0, ',', '.');
+                        ?>
+
+                                <div class="flex justify-between mt-10 mb-2">
+                                    <p class="text-gray-400 text-2xl font-bold"><?= $std['nama_studio'] ?></p>
+                                    <p class="text-gray-400 text-2xl font-bold">Rp <?= $format_angka ?></p>
+                                </div>
+                                <ul class="grid grid-flow-col grid-col-7 gap-3">
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|12.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|12.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|12.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">12.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|14.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|14.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|14.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">14.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|16.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|16.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|16.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">16.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|18.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|18.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|18.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">18.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|20.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|20.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|20.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">20.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" id="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|22.00" name="jam" value="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|22.00" class="hidden peer" required>
+                                        <label for="<?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|22.00" class="inline-flex items-center justify-between w-full p-3 text-gray-500 outline-slate-600 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-slate-600 peer-checked:text-white hover:text-gray-600 hover:bg-gray-100">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">22.00</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+
+                        <?php
+                            }
+                        }
+
+                        ?>
+                    </div>
+
+                <?php
+                }
+
+                ?>
+            </div>
+
+            <button name="submit-tiket" class="w-full h-20 my-4 text-3xl font-bold rounded-md border-3 border-slate-600 mx-auto text-slate-600 flex items-center justify-center">Pesan Tiket</button>
+
+        </form>
+    </div>
+
+    <!-- <?= $theater['id_bioskop'] ?>|<?= $std['harga'] ?>|<?= $std['id_studio'] ?>|12.00 -->
 
 </body>
 
 <!-- ajax -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function() {
         $('.klik_menu').click(function() {
             var menu = $(this).attr('id');
@@ -237,6 +369,6 @@ function waktu($time)
         $('.badan').load('home.php');
 
     });
-</script>
+</script> -->
 
 </html>
